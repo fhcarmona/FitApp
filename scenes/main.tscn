@@ -1,4 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://bxvku7pg54h5p"]
+[gd_scene load_steps=6 format=3 uid="uid://bxvku7pg54h5p"]
+
+[ext_resource type="Script" path="res://scripts/macro.gd" id="1_ibtlr"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ayhx8"]
 bg_color = Color(0, 0.588235, 0.588235, 1)
@@ -29,7 +31,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="TopBackground" type="ColorRect" parent="VBoxContainer"]
-custom_minimum_size = Vector2(0, 256)
+custom_minimum_size = Vector2(0, 192)
 layout_mode = 2
 color = Color(0.196078, 0.196078, 0.196078, 1)
 
@@ -74,106 +76,174 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_constants/separation = 25
 
-[node name="MacroBackground" type="ColorRect" parent="VBoxContainer/ContentBackground/ScrollContainer/MarginContainer/VBoxContainer"]
-custom_minimum_size = Vector2(0, 512)
+[node name="Macro" type="ColorRect" parent="VBoxContainer/ContentBackground/ScrollContainer/MarginContainer/VBoxContainer" node_paths=PackedStringArray("daily_kcal_goal", "carb_goal", "protein_goal", "fat_goal", "fiber_intake", "sodium_intake", "daily_kcal_intake", "carbs_slider", "protein_slider", "fat_slider", "calories_slider")]
+custom_minimum_size = Vector2(0, 416)
 layout_mode = 2
+mouse_filter = 2
 color = Color(0.294118, 0.294118, 0.294118, 1)
+script = ExtResource("1_ibtlr")
+daily_kcal_goal = NodePath("MarginContainer/VBoxContainer/DailyGoal")
+carb_goal = NodePath("MarginContainer/VBoxContainer/HSplitContainer/VBoxContainer/CarbsValues")
+protein_goal = NodePath("MarginContainer/VBoxContainer/HSplitContainer/VBoxContainer/ProteinValues")
+fat_goal = NodePath("MarginContainer/VBoxContainer/HSplitContainer/VBoxContainer/FatValues")
+fiber_intake = NodePath("MarginContainer/VBoxContainer/HSplitContainer/VBoxContainer/HSplitContainer/VBoxContainerRight/FiberPanelContainer/FiberValues")
+sodium_intake = NodePath("MarginContainer/VBoxContainer/HSplitContainer/VBoxContainer/HSplitContainer/VBoxContainerRight/SodiumPanelContainer/SodiumValues")
+daily_kcal_intake = NodePath("MarginContainer/VBoxContainer/HSplitContainer/VBoxContainer2/VBoxContainer/Label")
+carbs_slider = NodePath("MarginContainer/VBoxContainer/HSplitContainer/VBoxContainer/CarbsSlider")
+protein_slider = NodePath("MarginContainer/VBoxContainer/HSplitContainer/VBoxContainer/ProteinSlider")
+fat_slider = NodePath("MarginContainer/VBoxContainer/HSplitContainer/VBoxContainer/FatSlider")
+calories_slider = NodePath("MarginContainer/VBoxContainer/HSplitContainer/VBoxContainer2/CaloriesSlider")
 
-[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/ContentBackground/ScrollContainer/MarginContainer/VBoxContainer/MacroBackground"]
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/ContentBackground/ScrollContainer/MarginContainer/VBoxContainer/Macro"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/margin_left = 25
-theme_override_constants/margin_top = 25
-theme_override_constants/margin_right = 25
-theme_override_constants/margin_bottom = 25
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
 
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/ContentBackground/ScrollContainer/MarginContainer/VBoxContainer/MacroBackground/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/ContentBackground/ScrollContainer/MarginContainer/VBoxContainer/Macro/MarginContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="VBoxContainer/ContentBackground/ScrollContainer/MarginContainer/VBoxContainer/MacroBackground/MarginContainer/VBoxContainer"]
+[node name="DailyGoal" type="Label" parent="VBoxContainer/ContentBackground/ScrollContainer/MarginContainer/VBoxContainer/Macro/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
 theme_override_font_sizes/font_size = 18
 text = "Meta diária:  2.099 kcal"
 
-[node name="HSplitContainer" type="HSplitContainer" parent="VBoxContainer/ContentBackground/ScrollContainer/MarginContainer/VBoxContainer/MacroBackground/MarginContainer/VBoxContainer"]
+[node name="HSplitContainer" type="HSplitContainer" parent="VBoxContainer/ContentBackground/ScrollContainer/MarginContainer/VBoxContainer/Macro/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="VBoxContainer/ContentBackground/ScrollContainer/MarginContainer/VBoxContainer/MacroBackground/MarginContainer/VBoxContainer/HSplitContainer"]
+[node name="VBoxContainer2" type="VBoxContainer" parent="VBoxContainer/ContentBackground/ScrollContainer/MarginContainer/VBoxContainer/Macro/MarginContainer/VBoxContainer/HSplitContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 alignment = 1
 
-[node name="CarbsSlider2" type="HSlider" parent="VBoxContainer/ContentBackground/ScrollContainer/MarginContainer/VBoxContainer/MacroBackground/MarginContainer/VBoxContainer/HSplitContainer/VBoxContainer2"]
+[node name="CaloriesSlider" type="HSlider" parent="VBoxContainer/ContentBackground/ScrollContainer/MarginContainer/VBoxContainer/Macro/MarginContainer/VBoxContainer/HSplitContainer/VBoxContainer2"]
 layout_mode = 2
 size_flags_vertical = 4
 theme_override_styles/grabber_area = SubResource("StyleBoxFlat_ayhx8")
 value = 60.0
 
-[node name="Carbs2" type="Label" parent="VBoxContainer/ContentBackground/ScrollContainer/MarginContainer/VBoxContainer/MacroBackground/MarginContainer/VBoxContainer/HSplitContainer/VBoxContainer2"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 18
-text = "Carboidrato"
-
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/ContentBackground/ScrollContainer/MarginContainer/VBoxContainer/MacroBackground/MarginContainer/VBoxContainer/HSplitContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/ContentBackground/ScrollContainer/MarginContainer/VBoxContainer/Macro/MarginContainer/VBoxContainer/HSplitContainer/VBoxContainer2"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Carbs" type="Label" parent="VBoxContainer/ContentBackground/ScrollContainer/MarginContainer/VBoxContainer/MacroBackground/MarginContainer/VBoxContainer/HSplitContainer/VBoxContainer"]
+[node name="Label" type="Label" parent="VBoxContainer/ContentBackground/ScrollContainer/MarginContainer/VBoxContainer/Macro/MarginContainer/VBoxContainer/HSplitContainer/VBoxContainer2/VBoxContainer"]
+layout_mode = 2
+text = "2.100Kcal"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="VBoxContainer/ContentBackground/ScrollContainer/MarginContainer/VBoxContainer/Macro/MarginContainer/VBoxContainer/HSplitContainer/VBoxContainer2/VBoxContainer"]
+layout_mode = 2
+text = "Consumidas"
+horizontal_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/ContentBackground/ScrollContainer/MarginContainer/VBoxContainer/Macro/MarginContainer/VBoxContainer/HSplitContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Carbs" type="Label" parent="VBoxContainer/ContentBackground/ScrollContainer/MarginContainer/VBoxContainer/Macro/MarginContainer/VBoxContainer/HSplitContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 18
 text = "Carboidrato"
 
-[node name="CarbsSlider" type="HSlider" parent="VBoxContainer/ContentBackground/ScrollContainer/MarginContainer/VBoxContainer/MacroBackground/MarginContainer/VBoxContainer/HSplitContainer/VBoxContainer"]
+[node name="CarbsSlider" type="HSlider" parent="VBoxContainer/ContentBackground/ScrollContainer/MarginContainer/VBoxContainer/Macro/MarginContainer/VBoxContainer/HSplitContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_styles/grabber_area = SubResource("StyleBoxFlat_n0q18")
 value = 60.0
 
-[node name="CarbsValues" type="Label" parent="VBoxContainer/ContentBackground/ScrollContainer/MarginContainer/VBoxContainer/MacroBackground/MarginContainer/VBoxContainer/HSplitContainer/VBoxContainer"]
+[node name="CarbsValues" type="Label" parent="VBoxContainer/ContentBackground/ScrollContainer/MarginContainer/VBoxContainer/Macro/MarginContainer/VBoxContainer/HSplitContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 8
 theme_override_font_sizes/font_size = 14
 text = "160g / 221g (restam 61g)"
 
-[node name="Protein" type="Label" parent="VBoxContainer/ContentBackground/ScrollContainer/MarginContainer/VBoxContainer/MacroBackground/MarginContainer/VBoxContainer/HSplitContainer/VBoxContainer"]
+[node name="Protein" type="Label" parent="VBoxContainer/ContentBackground/ScrollContainer/MarginContainer/VBoxContainer/Macro/MarginContainer/VBoxContainer/HSplitContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 18
 text = "Proteina"
 
-[node name="ProteinSlider" type="HSlider" parent="VBoxContainer/ContentBackground/ScrollContainer/MarginContainer/VBoxContainer/MacroBackground/MarginContainer/VBoxContainer/HSplitContainer/VBoxContainer"]
+[node name="ProteinSlider" type="HSlider" parent="VBoxContainer/ContentBackground/ScrollContainer/MarginContainer/VBoxContainer/Macro/MarginContainer/VBoxContainer/HSplitContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_styles/grabber_area = SubResource("StyleBoxFlat_sw74y")
 value = 40.0
 
-[node name="ProteinValues" type="Label" parent="VBoxContainer/ContentBackground/ScrollContainer/MarginContainer/VBoxContainer/MacroBackground/MarginContainer/VBoxContainer/HSplitContainer/VBoxContainer"]
+[node name="ProteinValues" type="Label" parent="VBoxContainer/ContentBackground/ScrollContainer/MarginContainer/VBoxContainer/Macro/MarginContainer/VBoxContainer/HSplitContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 8
 theme_override_font_sizes/font_size = 14
 text = "98g / 189g (restam 91g)"
 
-[node name="Fat" type="Label" parent="VBoxContainer/ContentBackground/ScrollContainer/MarginContainer/VBoxContainer/MacroBackground/MarginContainer/VBoxContainer/HSplitContainer/VBoxContainer"]
+[node name="Fat" type="Label" parent="VBoxContainer/ContentBackground/ScrollContainer/MarginContainer/VBoxContainer/Macro/MarginContainer/VBoxContainer/HSplitContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 18
 text = "Gordura"
 
-[node name="FatSlider" type="HSlider" parent="VBoxContainer/ContentBackground/ScrollContainer/MarginContainer/VBoxContainer/MacroBackground/MarginContainer/VBoxContainer/HSplitContainer/VBoxContainer"]
+[node name="FatSlider" type="HSlider" parent="VBoxContainer/ContentBackground/ScrollContainer/MarginContainer/VBoxContainer/Macro/MarginContainer/VBoxContainer/HSplitContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_styles/grabber_area = SubResource("StyleBoxFlat_o2es0")
 value = 100.0
 
-[node name="FatValues" type="Label" parent="VBoxContainer/ContentBackground/ScrollContainer/MarginContainer/VBoxContainer/MacroBackground/MarginContainer/VBoxContainer/HSplitContainer/VBoxContainer"]
+[node name="FatValues" type="Label" parent="VBoxContainer/ContentBackground/ScrollContainer/MarginContainer/VBoxContainer/Macro/MarginContainer/VBoxContainer/HSplitContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 8
 theme_override_font_sizes/font_size = 14
 text = "63g / 51g (passaram 12g)"
 
-[node name="VScrollBar" type="VScrollBar" parent="VBoxContainer/ContentBackground"]
-layout_mode = 0
-offset_right = 8.0
-offset_bottom = 8.0
+[node name="HSplitContainer" type="HSplitContainer" parent="VBoxContainer/ContentBackground/ScrollContainer/MarginContainer/VBoxContainer/Macro/MarginContainer/VBoxContainer/HSplitContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="VBoxContainerLeft" type="VBoxContainer" parent="VBoxContainer/ContentBackground/ScrollContainer/MarginContainer/VBoxContainer/Macro/MarginContainer/VBoxContainer/HSplitContainer/VBoxContainer/HSplitContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="Fiber" type="Label" parent="VBoxContainer/ContentBackground/ScrollContainer/MarginContainer/VBoxContainer/Macro/MarginContainer/VBoxContainer/HSplitContainer/VBoxContainer/HSplitContainer/VBoxContainerLeft"]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "Fibra"
+vertical_alignment = 1
+
+[node name="Sodium" type="Label" parent="VBoxContainer/ContentBackground/ScrollContainer/MarginContainer/VBoxContainer/Macro/MarginContainer/VBoxContainer/HSplitContainer/VBoxContainer/HSplitContainer/VBoxContainerLeft"]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "Sódio"
+vertical_alignment = 1
+
+[node name="VBoxContainerRight" type="VBoxContainer" parent="VBoxContainer/ContentBackground/ScrollContainer/MarginContainer/VBoxContainer/Macro/MarginContainer/VBoxContainer/HSplitContainer/VBoxContainer/HSplitContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="FiberPanelContainer" type="PanelContainer" parent="VBoxContainer/ContentBackground/ScrollContainer/MarginContainer/VBoxContainer/Macro/MarginContainer/VBoxContainer/HSplitContainer/VBoxContainer/HSplitContainer/VBoxContainerRight"]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+
+[node name="FiberValues" type="Label" parent="VBoxContainer/ContentBackground/ScrollContainer/MarginContainer/VBoxContainer/Macro/MarginContainer/VBoxContainer/HSplitContainer/VBoxContainer/HSplitContainer/VBoxContainerRight/FiberPanelContainer"]
+layout_mode = 2
+text = "25g"
+horizontal_alignment = 1
+
+[node name="SodiumPanelContainer" type="PanelContainer" parent="VBoxContainer/ContentBackground/ScrollContainer/MarginContainer/VBoxContainer/Macro/MarginContainer/VBoxContainer/HSplitContainer/VBoxContainer/HSplitContainer/VBoxContainerRight"]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+
+[node name="SodiumValues" type="Label" parent="VBoxContainer/ContentBackground/ScrollContainer/MarginContainer/VBoxContainer/Macro/MarginContainer/VBoxContainer/HSplitContainer/VBoxContainer/HSplitContainer/VBoxContainerRight/SodiumPanelContainer"]
+layout_mode = 2
+text = "588mg"
+horizontal_alignment = 1
+
+[connection signal="value_changed" from="VBoxContainer/ContentBackground/ScrollContainer/MarginContainer/VBoxContainer/Macro/MarginContainer/VBoxContainer/HSplitContainer/VBoxContainer2/CaloriesSlider" to="VBoxContainer/ContentBackground/ScrollContainer/MarginContainer/VBoxContainer/Macro" method="_on_calories_slider_value_changed"]
+[connection signal="value_changed" from="VBoxContainer/ContentBackground/ScrollContainer/MarginContainer/VBoxContainer/Macro/MarginContainer/VBoxContainer/HSplitContainer/VBoxContainer/CarbsSlider" to="VBoxContainer/ContentBackground/ScrollContainer/MarginContainer/VBoxContainer/Macro" method="_on_carbs_slider_value_changed"]
+[connection signal="value_changed" from="VBoxContainer/ContentBackground/ScrollContainer/MarginContainer/VBoxContainer/Macro/MarginContainer/VBoxContainer/HSplitContainer/VBoxContainer/ProteinSlider" to="VBoxContainer/ContentBackground/ScrollContainer/MarginContainer/VBoxContainer/Macro" method="_on_protein_slider_value_changed"]
+[connection signal="value_changed" from="VBoxContainer/ContentBackground/ScrollContainer/MarginContainer/VBoxContainer/Macro/MarginContainer/VBoxContainer/HSplitContainer/VBoxContainer/FatSlider" to="VBoxContainer/ContentBackground/ScrollContainer/MarginContainer/VBoxContainer/Macro" method="_on_fat_slider_value_changed"]
